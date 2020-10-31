@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomizeJerseyActivity">
+
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/jersey_fill"/>
+
+        <RelativeLayout
+            android:id="@+id/txtName"
+            android:text="Nay Ye Lin"
+            android:background="@android:color/transparent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:textSize="25dp"
+            android:padding="10dp"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:layout_width="180dp"
+            android:layout_height="80dp"/>
+    <TextView
+        android:id="@+id/txtNo"
+        android:text="10"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="0dp"
+        android:firstBaselineToTopHeight="0dp"
+        android:textSize="100dp"
+        android:layout_below="@+id/txtName"
+        android:layout_centerHorizontal="true"
+        android:elevation="4dp"
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+</RelativeLayout>

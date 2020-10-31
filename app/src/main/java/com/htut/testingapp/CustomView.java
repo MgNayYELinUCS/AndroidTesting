@@ -5,38 +5,56 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.View;
 
 
 public class CustomView extends View {
-    private static final String Text = "Welcome To Hamad's Blog";
-    private Path myArc;
-    private Paint mPaintText;
+    private String QUOTE = "Nay Ye Lin";
+    private Path circle;
+    private Paint mCirlcePaint;
+    private Paint tPaint;
+    private Rect textBounds;
+    private int mTextWidth, mTextHeight, centerX, centerY;
+    private float radius;
 
     public CustomView(Context context) {
         super(context);
-        //create Path object
-        myArc = new Path();
-        //create RectF Object
-        RectF oval = new RectF(0,0,0,0);
-        //add Arc in Path with start angle -180 and sweep angle 200
-        myArc.addArc(oval, -180, 200);
-        //create paint object
-        mPaintText = new Paint(Paint.ANTI_ALIAS_FLAG);
-        //set style
-        mPaintText.setStyle(Paint.Style.FILL_AND_STROKE);
-        //set color
-        mPaintText.setColor(Color.RED);
-        //set text Size
-        mPaintText.setTextSize(20f);
+        circle = new Path();
+
+        tPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        tPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        tPaint.setColor(Color.WHITE);
+        tPaint.setTextSize(60f);
+        textBounds = new Rect();
+
+        tPaint.getTextBounds(QUOTE, 0, QUOTE.length(), textBounds);
+        mTextWidth = Math.round(tPaint.measureText(QUOTE.toString())); // Use measureText to calculate width
+        mTextHeight = textBounds.height(); // Use height from getTextBounds()
+
+        mCirlcePaint = new Paint();
+       // mCirlcePaint.setStyle(Paint.Style.FILL);
+        mCirlcePaint.setColor(getResources().getColor(R.color.transparent));
+
+        radius = (float) ((mTextWidth) / (Math.PI));
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        centerX = w / 2;
+        centerY = h / 2;
 
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        //Draw Text on Canvas
-        canvas.drawTextOnPath(Text, myArc, 0, 0, mPaintText);
-        invalidate();
+
+        canvas.rotate(180, getWidth() / 2, getHeight() / 2);
+        canvas.drawCircle(centerX, centerY, radius, mCirlcePaint);
+        circle.addCircle(centerX, centerY, radius, Path.Direction.CW);
+        canvas.drawTextOnPath(QUOTE, circle, 0, 0, tPaint);
+
     }
 }

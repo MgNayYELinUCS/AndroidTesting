@@ -72,14 +72,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         TelephonyManager manager = (TelephonyManager)getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
         String carrierName = manager.getNetworkOperatorName();
-        //Toast.makeText(getApplicationContext(),carrierName,Toast.LENGTH_LONG).show();
-        long mobile = TrafficStats.getMobileRxBytes() + TrafficStats.getMobileTxBytes();
         long total = TrafficStats.getTotalRxBytes() + TrafficStats.getTotalTxBytes();
-//        tvDataUsageWiFi.setText("" + (total - mobile) / 1024 + " Kb");
-//        tvDataUsageMobile.setText("" + mobile / 1024 + " Kb");
-//        tvDataUsageTotal.setText("" + total / 1024 + " Kb");
-        Toast.makeText(this,total / 1024 + " Kb", Toast.LENGTH_SHORT).show();
-
+        //Toast.makeText(this,total / 1024 + " Kb", Toast.LENGTH_SHORT).show();
 
         ConnectivityManager connMgr =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
